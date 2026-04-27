@@ -6,10 +6,12 @@ import SaynetCard from './SaynetCard'
 import SayneteMini from './SayneteMini'
 
 // Formate le numéro de scène: 8 → "8a", 8.5 → "8b"
-const formatNumero = (n: number, allNumeros?: number[]): string => {
-  if (n % 1 === 0.5) return `${Math.floor(n)}b`
-  if (allNumeros?.includes(n + 0.5)) return `${n}a`
-  return String(n)
+const formatNumero = (n: number | string, allNumeros?: (number | string)[]): string => {
+  const num = Number(n)
+  const nums = allNumeros?.map(Number) ?? []
+  if (num % 1 === 0.5) return `${Math.floor(num)}b`
+  if (nums.includes(num + 0.5)) return `${num}a`
+  return String(num)
 }
 
 interface TimelineViewProps {
@@ -262,7 +264,7 @@ export default function TimelineView({
                 comediens={getComediensForSaynete(currentSaynete.id)}
                 allComediens={comediens}
                 index={currentIndex + 1}
-                total={filteredSaynetes.length}
+                total={filteredSaynetes.filter(s => Number(s.numero) % 1 !== 0.5).length}
                 selectedComedien={selectedComedien}
                 accessoiresData={accessoires.filter(a => a.saynete_id === currentSaynete.id)}
                 allNumeros={allNumeros}

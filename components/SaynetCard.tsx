@@ -3,10 +3,12 @@
 import { useState, useEffect } from 'react'
 import { Saynete, Comedien, fetchAccessoires, fetchCommentaires, addCommentaire, deleteCommentaire } from '@/lib/supabase'
 
-const formatNumero = (n: number, allNumeros?: number[]): string => {
-  if (n % 1 === 0.5) return `${Math.floor(n)}b`
-  if (allNumeros?.includes(n + 0.5)) return `${n}a`
-  return String(n)
+const formatNumero = (n: number | string, allNumeros?: (number | string)[]): string => {
+  const num = Number(n)
+  const nums = allNumeros?.map(Number) ?? []
+  if (num % 1 === 0.5) return `${Math.floor(num)}b`
+  if (nums.includes(num + 0.5)) return `${num}a`
+  return String(num)
 }
 
 interface SaynetCardProps {
@@ -17,7 +19,7 @@ interface SaynetCardProps {
   total: number
   selectedComedien?: string | null
   accessoiresData?: any[]
-  allNumeros?: number[]
+  allNumeros?: (number | string)[]
 }
 
 export default function SaynetCard({
