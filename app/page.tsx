@@ -39,7 +39,7 @@ export default function Home() {
         setSaynetesComediens(sc)
         
         // Load all accessoires
-        const { data: acc, error: accError } = await supabase
+        const { data: acc, error: accError } = await supabase()
           .from('accessoires')
           .select('*')
         if (accError) throw accError
