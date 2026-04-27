@@ -129,7 +129,8 @@ export const addCommentaire = async (
 ) => {
   const { data, error } = await getSupabase()
     .from('commentaires')
-    .insert([{ saynete_id: sayneteId, auteur, type, texte }] as any)
+    // @ts-ignore - Supabase type inference issue with insert
+    .insert([{ saynete_id: sayneteId, auteur, type, texte }])
     .select()
   
   if (error) throw error
@@ -151,7 +152,8 @@ export const updateAccessoire = async (
 ) => {
   const { data, error } = await getSupabase()
     .from('accessoires')
-    .update(updates as any)
+    // @ts-ignore - Supabase type inference issue with update
+    .update(updates)
     .eq('id', accessoireId)
     .select()
   
@@ -176,7 +178,8 @@ export const addAccessoire = async (
 ) => {
   const { data, error } = await getSupabase()
     .from('accessoires')
-    .insert([{ saynete_id: sayneteId, comedien_id: comedienId, objet, note }] as any)
+    // @ts-ignore - Supabase type inference issue with insert
+    .insert([{ saynete_id: sayneteId, comedien_id: comedienId, objet, note }])
     .select()
   
   if (error) throw error
