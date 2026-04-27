@@ -129,7 +129,7 @@ export const addCommentaire = async (
 ) => {
   const { data, error } = await getSupabase()
     .from('commentaires')
-    .insert([{ saynete_id: sayneteId, auteur, type, texte }])
+    .insert([{ saynete_id: sayneteId, auteur, type, texte }] as any)
     .select()
   
   if (error) throw error
@@ -176,7 +176,7 @@ export const addAccessoire = async (
 ) => {
   const { data, error } = await getSupabase()
     .from('accessoires')
-    .insert([{ saynete_id: sayneteId, comedien_id: comedienId, objet, note }])
+    .insert([{ saynete_id: sayneteId, comedien_id: comedienId, objet, note }] as any)
     .select()
   
   if (error) throw error
