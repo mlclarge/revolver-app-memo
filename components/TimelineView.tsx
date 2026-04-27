@@ -5,6 +5,12 @@ import { Saynete, Comedien, SaynetesComedien, type Accessoire } from '@/lib/supa
 import SaynetCard from './SaynetCard'
 import SayneteMini from './SayneteMini'
 
+// Formate le numéro de scène: 8.5 → "8 Bis"
+const formatNumero = (n: number): string => {
+  if (n % 1 === 0.5) return `${Math.floor(n)} Bis`
+  return String(n)
+}
+
 interface TimelineViewProps {
   saynetes: Saynete[]
   comediens: Comedien[]
@@ -146,7 +152,7 @@ export default function TimelineView({
                   style={selectedSaynete === saynete.numero ? { backgroundColor: '#8B3A5F', boxShadow: '0 0 15px rgba(139, 58, 95, 0.5)' } : {}}
                   title={saynete.titre}
                 >
-                  {saynete.numero}
+                  {formatNumero(saynete.numero)}
                 </button>
               ))}
             </div>
@@ -182,45 +188,68 @@ export default function TimelineView({
       {/* Content Area */}
       <div className="flex-1 overflow-y-auto">
         <div className="max-w-7xl mx-auto px-3 md:px-4 py-4 md:py-6 space-y-4 md:space-y-6">
-          {/* Avant / Après Context - Responsive */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
+          {/* Navigation contexte - Avant / Scène actuelle / Après */}
+          <div className="grid grid-cols-3 gap-2 md:gap-4 items-center">
+
             {/* Avant */}
             {prevSaynete ? (
-              <div
-                className="cursor-pointer transition-transform hover:scale-105"
+              <button
                 onClick={() => setSelectedSaynete(prevSaynete.numero)}
+                className="flex flex-col items-center gap-1 p-3 rounded-xl border border-slate-600 bg-slate-800/50 hover:bg-slate-700/80 hover:border-slate-400 transition-all group text-left"
               >
-                <p className="text-xs text-slate-400 mb-2">◀ Avant</p>
-                <SayneteMini saynete={prevSaynete} comediens={comediens} />
-              </div>
+                <span className="text-xs text-slate-400 group-hover:text-slate-200 flex items-center gap-1">
+                  ◀ <span className="font-semibold">PRÉCÉDENTE</span>
+                </span>
+                <span className="text-2xl">{prevSaynete.emoji || '🎭'}</span>
+                <span className="text-xs font-bold text-slate-300 text-center leading-tight line-clamp-2">
+                  <span className="text-slate-500">#{formatNumero(prevSaynete.numero)}</span>{' '}
+                  {prevSaynete.titre}
+                </span>
+              </button>
             ) : (
-              <div className="text-center text-slate-600 hidden md:block">
-                <p className="text-xs">─ Début ─</p>
+              <div className="flex items-center justify-center p-3 rounded-xl border border-slate-700/40 bg-slate-900/30">
+                <span className="text-xs text-slate-600 italic">Début du spectacle</span>
               </div>
             )}
 
-            {/* Current (highlight) */}
+            {/* Scène actuelle — grand et mis en valeur */}
             {currentSaynete && (
-              <div className="border-2 rounded-lg p-2" style={{ borderColor: 'rgba(139, 58, 95, 0.5)', backgroundColor: 'rgba(139, 58, 95, 0.1)' }}>
-                <p className="text-xs font-bold mb-2" style={{ color: '#8B3A5F' }}>● FOCUS</p>
-                <SayneteMini saynete={currentSaynete} comediens={comediens} highlight />
+              <div
+                className="flex flex-col items-center gap-1 p-3 rounded-xl border-2"
+                style={{ borderColor: '#8B3A5F', backgroundColor: 'rgba(139, 58, 95, 0.15)' }}
+              >
+                <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#C06090' }}>
+                  ▶ EN COURS
+                </span>
+                <span className="text-4xl">{currentSaynete.emoji || '🎭'}</span>
+                <span className="text-sm font-extrabold text-white text-center leading-tight">
+                  <span className="opacity-60">#{formatNumero(currentSaynete.numero)}</span>{' '}
+                  {currentSaynete.titre}
+                </span>
               </div>
             )}
 
             {/* Après */}
             {nextSaynete ? (
-              <div
-                className="cursor-pointer transition-transform hover:scale-105"
+              <button
                 onClick={() => setSelectedSaynete(nextSaynete.numero)}
+                className="flex flex-col items-center gap-1 p-3 rounded-xl border border-slate-600 bg-slate-800/50 hover:bg-slate-700/80 hover:border-slate-400 transition-all group text-right"
               >
-                <p className="text-xs text-slate-400 mb-2">Après ▶</p>
-                <SayneteMini saynete={nextSaynete} comediens={comediens} />
-              </div>
+                <span className="text-xs text-slate-400 group-hover:text-slate-200 flex items-center gap-1 self-end">
+                  <span className="font-semibold">SUIVANTE</span> ▶
+                </span>
+                <span className="text-2xl">{nextSaynete.emoji || '🎭'}</span>
+                <span className="text-xs font-bold text-slate-300 text-center leading-tight line-clamp-2">
+                  <span className="text-slate-500">#{formatNumero(nextSaynete.numero)}</span>{' '}
+                  {nextSaynete.titre}
+                </span>
+              </button>
             ) : (
-              <div className="text-center text-slate-600 hidden md:block">
-                <p className="text-xs">─ Fin ─</p>
+              <div className="flex items-center justify-center p-3 rounded-xl border border-slate-700/40 bg-slate-900/30">
+                <span className="text-xs text-slate-600 italic">Fin du spectacle</span>
               </div>
             )}
+
           </div>
 
           {/* Détail complet */}
