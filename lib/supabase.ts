@@ -151,7 +151,7 @@ export const updateAccessoire = async (
 ) => {
   const { data, error } = await getSupabase()
     .from('accessoires')
-    .update(updates)
+    .update(updates as any)
     .eq('id', accessoireId)
     .select()
   
