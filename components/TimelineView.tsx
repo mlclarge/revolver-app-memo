@@ -7,11 +7,11 @@ import SayneteMini from './SayneteMini'
 
 // Formate le numéro de scène: 8 → "8a", 8.5 → "8b"
 const formatNumero = (n: number | string, allNumeros?: (number | string)[]): string => {
-  const num = Number(n)
-  const nums = allNumeros?.map(Number) ?? []
-  if (num % 1 === 0.5) return `${Math.floor(num)}b`
-  if (nums.includes(num + 0.5)) return `${num}a`
-  return String(num)
+  const isBis = String(n).includes('.')
+  if (isBis) return `${String(n).split('.')[0]}b`
+  const hasBis = allNumeros?.some(x => String(x).startsWith(String(n) + '.'))
+  if (hasBis) return `${n}a`
+  return String(n)
 }
 
 interface TimelineViewProps {
@@ -264,7 +264,7 @@ export default function TimelineView({
                 comediens={getComediensForSaynete(currentSaynete.id)}
                 allComediens={comediens}
                 index={currentIndex + 1}
-                total={filteredSaynetes.filter(s => Number(s.numero) % 1 !== 0.5).length}
+                total={filteredSaynetes.filter(s => !String(s.numero).includes('.')).length}
                 selectedComedien={selectedComedien}
                 accessoiresData={accessoires.filter(a => a.saynete_id === currentSaynete.id)}
                 allNumeros={allNumeros}

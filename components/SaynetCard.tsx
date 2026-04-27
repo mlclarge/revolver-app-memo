@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import { Saynete, Comedien, fetchAccessoires, fetchCommentaires, addCommentaire, deleteCommentaire } from '@/lib/supabase'
 
 const formatNumero = (n: number | string, allNumeros?: (number | string)[]): string => {
-  const num = Number(n)
-  const nums = allNumeros?.map(Number) ?? []
-  if (num % 1 === 0.5) return `${Math.floor(num)}b`
-  if (nums.includes(num + 0.5)) return `${num}a`
-  return String(num)
+  const isBis = String(n).includes('.')
+  if (isBis) return `${String(n).split('.')[0]}b`
+  const hasBis = allNumeros?.some(x => String(x).startsWith(String(n) + '.'))
+  if (hasBis) return `${n}a`
+  return String(n)
 }
 
 interface SaynetCardProps {

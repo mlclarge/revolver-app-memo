@@ -78,7 +78,7 @@ export const fetchSaynetes = async () => {
     .order('numero', { ascending: true })
   
   if (error) throw error
-  return (data as Saynete[]).map(s => ({ ...s, numero: Number(s.numero) }))
+  return (data as Saynete[]).map(s => ({ ...s, numero: String(s.numero) as unknown as number }))
 }
 
 export const fetchSaynetesComediens = async () => {
