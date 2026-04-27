@@ -3,9 +3,8 @@
 import { useState, useEffect } from 'react'
 import { Saynete, Comedien, fetchAccessoires, fetchCommentaires, addCommentaire, deleteCommentaire } from '@/lib/supabase'
 
-const formatNumero = (n: number, allNumeros?: number[]): string => {
-  if (n % 1 === 0.5) return `${Math.floor(n)}b`
-  if (allNumeros?.includes(n + 0.5)) return `${n}a`
+const formatNumero = (n: number): string => {
+  if (n % 1 === 0.5) return `${Math.floor(n)} bis`
   return String(n)
 }
 
@@ -17,7 +16,6 @@ interface SaynetCardProps {
   total: number
   selectedComedien?: string | null
   accessoiresData?: any[]
-  allNumeros?: number[]
 }
 
 export default function SaynetCard({
@@ -28,7 +26,6 @@ export default function SaynetCard({
   total,
   selectedComedien = null,
   accessoiresData = [],
-  allNumeros,
 }: SaynetCardProps) {
   const [expanded, setExpanded] = useState(false)
   const [accessoires, setAccessoires] = useState<any[]>(accessoiresData)
@@ -105,13 +102,13 @@ export default function SaynetCard({
       <div className="flex items-start justify-between mb-4">
         <div>
           <div className="inline-block px-3 py-1 rounded-full text-sm font-bold mb-2" style={{ backgroundColor: '#8B3A5F', color: 'white' }}>
-            #{formatNumero(saynete.numero, allNumeros)} / {total}
+            #{formatNumero(saynete.numero)} / {total}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
             <span className="text-4xl md:text-5xl mr-3">{saynete.emoji || '🎭'}</span>
             {saynete.titre}
           </h2>
-          <p className="text-sm text-slate-400">Saynète #{formatNumero(saynete.numero, allNumeros)}</p>
+          <p className="text-sm text-slate-400">Saynète #{formatNumero(saynete.numero)}</p>
         </div>
       </div>
 

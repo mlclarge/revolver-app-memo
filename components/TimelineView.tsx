@@ -6,9 +6,8 @@ import SaynetCard from './SaynetCard'
 import SayneteMini from './SayneteMini'
 
 // Formate le numéro de scène: 8 → "8a", 8.5 → "8b"
-const formatNumero = (n: number, allNumeros?: number[]): string => {
-  if (n % 1 === 0.5) return `${Math.floor(n)}b`
-  if (allNumeros?.includes(n + 0.5)) return `${n}a`
+const formatNumero = (n: number): string => {
+  if (n % 1 === 0.5) return `${Math.floor(n)} bis`
   return String(n)
 }
 
@@ -79,7 +78,6 @@ export default function TimelineView({
   const currentIndex = filteredSaynetes.findIndex(s => s.numero === selectedSaynete)
   const prevSaynete = currentIndex > 0 ? filteredSaynetes[currentIndex - 1] : null
   const nextSaynete = currentIndex < filteredSaynetes.length - 1 ? filteredSaynetes[currentIndex + 1] : null
-  const allNumeros = saynetes.map(s => s.numero)
 
   return (
     <div className="w-full h-screen flex flex-col" style={{ backgroundColor: '#8B3A5F' }}>
@@ -154,7 +152,7 @@ export default function TimelineView({
                   style={selectedSaynete === saynete.numero ? { backgroundColor: '#8B3A5F', boxShadow: '0 0 15px rgba(139, 58, 95, 0.5)' } : {}}
                   title={saynete.titre}
                 >
-                  {formatNumero(saynete.numero, allNumeros)}
+                  {formatNumero(saynete.numero)}
                 </button>
               ))}
             </div>
@@ -204,7 +202,7 @@ export default function TimelineView({
                 </span>
                 <span className="text-2xl">{prevSaynete.emoji || '🎭'}</span>
                 <span className="text-xs font-bold text-slate-300 text-center leading-tight line-clamp-2">
-                  <span className="text-slate-500">#{formatNumero(prevSaynete.numero, allNumeros)}</span>{' '}
+                  <span className="text-slate-500">#{formatNumero(prevSaynete.numero)}</span>{' '}
                   {prevSaynete.titre}
                 </span>
               </button>
@@ -225,7 +223,7 @@ export default function TimelineView({
                 </span>
                 <span className="text-4xl">{currentSaynete.emoji || '🎭'}</span>
                 <span className="text-sm font-extrabold text-white text-center leading-tight">
-                  <span className="opacity-60">#{formatNumero(currentSaynete.numero, allNumeros)}</span>{' '}
+                  <span className="opacity-60">#{formatNumero(currentSaynete.numero)}</span>{' '}
                   {currentSaynete.titre}
                 </span>
               </div>
@@ -242,7 +240,7 @@ export default function TimelineView({
                 </span>
                 <span className="text-2xl">{nextSaynete.emoji || '🎭'}</span>
                 <span className="text-xs font-bold text-slate-300 text-center leading-tight line-clamp-2">
-                  <span className="text-slate-500">#{formatNumero(nextSaynete.numero, allNumeros)}</span>{' '}
+                  <span className="text-slate-500">#{formatNumero(nextSaynete.numero)}</span>{' '}
                   {nextSaynete.titre}
                 </span>
               </button>
@@ -265,7 +263,6 @@ export default function TimelineView({
                 total={filteredSaynetes.length}
                 selectedComedien={selectedComedien}
                 accessoiresData={accessoires.filter(a => a.saynete_id === currentSaynete.id)}
-                allNumeros={allNumeros}
               />
             </div>
           )}
