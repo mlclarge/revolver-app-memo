@@ -1,5 +1,6 @@
 export const dynamic = 'force-dynamic'
 
+import { unstable_noStore as noStore } from 'next/cache'
 import {
   fetchSaynetes,
   fetchComediens,
@@ -13,6 +14,7 @@ import {
 import HomeClient from '@/components/HomeClient'
 
 export default async function Home() {
+  noStore()
   try {
     const [saynetes, comediens, saynetesComediens, accessoires] = await Promise.all([
       fetchSaynetes(),
