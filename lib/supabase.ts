@@ -3,11 +3,19 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
+let supabase: ReturnType<typeof createClient> | null = null
+
+const getSupabase = () => {
+  if (!supabase) {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      throw new Error('Missing Supabase environment variables')
+    }
+    supabase = createClient(supabaseUrl, supabaseAnonKey)
+  }
+  return supabase
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export { getSupabase as supabase }
 
 // Types
 export interface Comedien {
@@ -55,7 +63,7 @@ export interface Commentaire {
 
 // Fetch functions
 export const fetchComediens = async () => {
-  const { data, error } = await supabase
+  const { data, error } = await supabase()
     .from('comediens')
     .select('*')
     .order('id', { ascending: true })
@@ -65,7 +73,7 @@ export const fetchComediens = async () => {
 }
 
 export const fetchSaynetes = async () => {
-  const { data, error } = await supabase
+  const { data, error } = await supabase()
     .from('saynetes')
     .select('*')
     .order('numero', { ascending: true })
@@ -75,7 +83,7 @@ export const fetchSaynetes = async () => {
 }
 
 export const fetchSaynetesComediens = async () => {
-  const { data, error } = await supabase
+  const { data, error } = await supabase()
     .from('saynetes_comediens')
     .select('*')
   
@@ -84,7 +92,7 @@ export const fetchSaynetesComediens = async () => {
 }
 
 export const fetchAccessoires = async (sayneteId: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await supabase()
     .from('accessoires')
     .select('*')
     .eq('saynete_id', sayneteId)
@@ -94,7 +102,7 @@ export const fetchAccessoires = async (sayneteId: number) => {
 }
 
 export const fetchCommentaires = async (sayneteId: number) => {
-  const { data, error } = await supabase
+  const { data, error } = await supabase()
     .from('commentaires')
     .select('*')
     .eq('saynete_id', sayneteId)
@@ -110,7 +118,7 @@ export const addCommentaire = async (
   type: 'comedien' | 'mes',
   texte: string
 ) => {
-  const { data, error } = await supabase
+  const { data, error } = await supabase()
     .from('commentaires')
     .insert([{ saynete_id: sayneteId, auteur, type, texte }])
     .select()
@@ -120,7 +128,7 @@ export const addCommentaire = async (
 }
 
 export const deleteCommentaire = async (commentaireId: number) => {
-  const { error } = await supabase
+  const { error } = await supabase()
     .from('commentaires')
     .delete()
     .eq('id', commentaireId)
@@ -132,7 +140,7 @@ export const updateAccessoire = async (
   accessoireId: number,
   updates: Partial<Accessoire>
 ) => {
-  const { data, error } = await supabase
+  const { data, error } = await supabase()
     .from('accessoires')
     .update(updates)
     .eq('id', accessoireId)

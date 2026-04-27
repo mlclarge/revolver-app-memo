@@ -19,7 +19,7 @@ export default function SayneteMini({
 
   useEffect(() => {
     const loadComediens = async () => {
-      const { data } = await supabase
+      const { data } = await supabase()
         .from('saynetes_comediens')
         .select('*')
         .eq('saynete_id', saynete.id)
