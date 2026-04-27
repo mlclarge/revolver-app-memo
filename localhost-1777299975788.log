@@ -1,0 +1,6 @@
+main-app.js?v=1777299959755:1847 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+page.tsx:56 🎭 FILTER STATE: {selectedComedien: null, totalSaynetes: 0, filteredCount: 0, allComediens: Array(0), selectedComedienId: undefined}
+page.tsx:56 🎭 FILTER STATE: {selectedComedien: null, totalSaynetes: 0, filteredCount: 0, allComediens: Array(0), selectedComedienId: undefined}
+supabase.ts:82 📊 fetchSaynetesComediens: {count: 0, samples: Array(0), sample_maurice: Array(0)}count: 0sample_maurice: []samples: [][[Prototype]]: Object
+supabase.ts:82 📊 fetchSaynetesComediens: {count: 0, samples: Array(0), sample_maurice: Array(0)}count: 0sample_maurice: []samples: [][[Prototype]]: Object
+page.tsx:56 🎭 FILTER STATE: {selectedComedien: null, totalSaynetes: 26, filteredCount: 26, allComediens: Array(8), selectedComedienId: undefined}

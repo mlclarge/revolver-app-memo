@@ -1,0 +1,22 @@
+react-dom.development.js:38560 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+:3000/favicon.ico:1  Failed to load resource: the server responded with a status of 404 (Not Found)
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+page.tsx:56 🎭 FILTER STATE: Object
+page.tsx:56 🎭 FILTER STATE: Object
+hot-reloader-client.js:44 [Fast Refresh] done in 914ms
+page.tsx:56 🎭 FILTER STATE: Object
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+hot-reloader-client.js:44 [Fast Refresh] done in 426ms
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+hot-reloader-client.js:44 [Fast Refresh] done in 51ms
+hot-reloader-client.js:44 [Fast Refresh] done in 396ms
+SayneteFeed.tsx:28 👆 FILTER CLICKED: Maurice
+page.tsx:56 🎭 FILTER STATE: ObjectallComediens: (8) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]filteredCount: 0selectedComedien: "Maurice"selectedComedienId: 4totalSaynetes: 26[[Prototype]]: Object
+SayneteFeed.tsx:28 👆 FILTER CLICKED: Christophe
+page.tsx:56 🎭 FILTER STATE: Object
+SayneteFeed.tsx:28 👆 FILTER CLICKED: Christophe
+SayneteFeed.tsx:28 👆 FILTER CLICKED: Jean
+page.tsx:56 🎭 FILTER STATE: Object
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+hot-reloader-client.js:44 [Fast Refresh] done in 310ms

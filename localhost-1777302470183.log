@@ -1,0 +1,23 @@
+react-dom.development.js:38560 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+supabase.ts:82 📊 fetchSaynetesComediens: Object
+TimelineView.tsx:86 🎯 FILTER RESULT: Object
+TimelineView.tsx:86 🎯 FILTER RESULT: Object
+supabase.ts:82 📊 fetchSaynetesComediens: Object
+TimelineView.tsx:31 👆 FILTER CLICKED: Maurice
+TimelineView.tsx:59 ✓ Saynète #1: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #3: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #11: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #12: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #14: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #15: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #1: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #3: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #11: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #12: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #14: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #15: isActor=true, hasMES=true
+TimelineView.tsx:75 🎭 Maurice (id=4): Object
+TimelineView.tsx:86 🎯 FILTER RESULT: Object
+page.tsx:83 🎭 FILTER: Object
+hot-reloader-client.js:187 [Fast Refresh] rebuilding
+hot-reloader-client.js:44 [Fast Refresh] done in 29ms

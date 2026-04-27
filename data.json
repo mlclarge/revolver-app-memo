@@ -1,0 +1,22 @@
+{
+  "comediens": [
+    {"id": 1, "nom": "Christophe", "couleur": "#FF6B6B"},
+    {"id": 2, "nom": "Jean", "couleur": "#4ECDC4"},
+    {"id": 3, "nom": "Marie-Pierre", "couleur": "#FFE66D"},
+    {"id": 4, "nom": "Maurice", "couleur": "#95E1D3"},
+    {"id": 5, "nom": "Isabelle", "couleur": "#F38181"},
+    {"id": 6, "nom": "Audrey", "couleur": "#AA96DA"},
+    {"id": 7, "nom": "Fabienne", "couleur": "#FCBAD3"},
+    {"id": 8, "nom": "Amavi", "couleur": "#A8D8EA"}
+  ],
+  "saynetes": [
+    {"numero": 1, "titre": "BIBLIQUE", "jingle": "1-BIBLIQUE_ENTREE.mp3", "comediens": ["Fabienne", "Jean", "Maurice", "Marie-Pierre", "Audrey", "Christophe", "Amavi", "Isabelle"]},
+    {"numero": 2, "titre": "SUSPENSE", "jingle": "2_suspense.wav", "comediens": ["Fabienne"]},
+    {"numero": 3, "titre": "PUBLICITAIRE", "jingle": "3_publicitaire.wav", "comediens": ["Maurice", "Marie-Pierre"]},
+    {"numero": 4, "titre": "CAUSE À EFFET", "jingle": "4_cause___effet.wav", "comediens": ["Jean", "Isabelle", "Audrey"]},
+    {"numero": 5, "titre": "MONDAIN", "jingle": "5_mondain.wav", "comediens": ["Jean", "Isabelle", "Amavi"]},
+    {"numero": 6, "titre": "SANS REVOLVER", "jingle": "6_sans_revolver.wav", "comediens": ["Audrey"]},
+    {"numero": 7, "titre": "DÉPIT AMOUREUX", "jingle": "7_d_pit_amoureux.wav", "comediens": ["Fabienne"]},
+    {"numero": 26, "titre": "RÉPÉTITIF", "jingle": "25-REPETITIF_v3_avec_voix.wav", "comediens": ["Audrey"]}
+  ]
+}

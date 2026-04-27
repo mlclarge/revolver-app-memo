@@ -1,0 +1,33 @@
+main-app.js?v=1777302637718:1847 Download the React DevTools for a better development experience: https://reactjs.org/link/react-devtools
+supabase.ts:82 📊 fetchSaynetesComediens: {count: 53, samples: Array(5), sample_maurice: Array(12)}
+supabase.ts:82 📊 fetchSaynetesComediens: {count: 53, samples: Array(5), sample_maurice: Array(12)}
+TimelineView.tsx:86 🎯 FILTER RESULT: {selectedComedien: null, totalSaynetes: 26, filteredCount: 26, filteredNumbers: Array(26)}
+TimelineView.tsx:86 🎯 FILTER RESULT: {selectedComedien: null, totalSaynetes: 26, filteredCount: 26, filteredNumbers: Array(26)}
+TimelineView.tsx:31 👆 FILTER CLICKED: Maurice
+TimelineView.tsx:59 ✓ Saynète #1: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #3: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #4: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #7: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #11: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #12: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #14: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #15: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #16: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #17: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #24: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #26: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #1: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #3: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #4: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #7: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #11: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #12: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #14: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #15: isActor=true, hasMES=true
+TimelineView.tsx:59 ✓ Saynète #16: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #17: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #24: isActor=true, hasMES=false
+TimelineView.tsx:59 ✓ Saynète #26: isActor=true, hasMES=false
+TimelineView.tsx:75 🎭 Maurice (id=4): {totalSaynetes: 26, actorIn: Array(12), mesIn: Array(6), combined: Array(12)}
+TimelineView.tsx:86 🎯 FILTER RESULT: {selectedComedien: 'Maurice', totalSaynetes: 26, filteredCount: 12, filteredNumbers: Array(12)}
+page.tsx:83 🎭 FILTER: {selectedComedien: 'Maurice', actorIn: Array(12), mesIn: Array(6)}
