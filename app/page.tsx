@@ -7,12 +7,12 @@ import {
   fetchSaynetes,
   fetchComediens,
   fetchSaynetesComediens,
+  fetchAllAccessoires,
   type Saynete,
   type Comedien,
   type SaynetesComedien,
   type Accessoire,
 } from '@/lib/supabase'
-import { supabase } from '@/lib/supabase'
 import SayneteFeed from '@/components/SayneteFeed'
 import TimelineView from '@/components/TimelineView'
 
@@ -39,11 +39,8 @@ export default function Home() {
         setSaynetesComediens(sc)
         
         // Load all accessoires
-        const { data: acc, error: accError } = await supabase()
-          .from('accessoires')
-          .select('*')
-        if (accError) throw accError
-        setAccessoires(acc as Accessoire[])
+        const acc = await fetchAllAccessoires()
+        setAccessoires(acc)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Erreur de chargement')
         console.error('Error loading data:', err)

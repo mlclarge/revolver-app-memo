@@ -5,6 +5,7 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 let supabase: ReturnType<typeof createClient> | null = null
 
+// Private function - never exported, only used inside this module
 const getSupabase = () => {
   if (!supabase) {
     if (!supabaseUrl || !supabaseAnonKey) {
@@ -14,8 +15,6 @@ const getSupabase = () => {
   }
   return supabase
 }
-
-export { getSupabase as supabase }
 
 // Types
 export interface Comedien {
@@ -63,7 +62,7 @@ export interface Commentaire {
 
 // Fetch functions
 export const fetchComediens = async () => {
-  const { data, error } = await supabase()
+  const { data, error } = await getSupabase()
     .from('comediens')
     .select('*')
     .order('id', { ascending: true })
@@ -73,7 +72,7 @@ export const fetchComediens = async () => {
 }
 
 export const fetchSaynetes = async () => {
-  const { data, error } = await supabase()
+  const { data, error } = await getSupabase()
     .from('saynetes')
     .select('*')
     .order('numero', { ascending: true })
@@ -83,7 +82,7 @@ export const fetchSaynetes = async () => {
 }
 
 export const fetchSaynetesComediens = async () => {
-  const { data, error } = await supabase()
+  const { data, error } = await getSupabase()
     .from('saynetes_comediens')
     .select('*')
   
@@ -91,8 +90,18 @@ export const fetchSaynetesComediens = async () => {
   return data as SaynetesComedien[]
 }
 
+export const fetchSaynetesComediensBySaynete = async (sayneteId: number) => {
+  const { data, error } = await getSupabase()
+    .from('saynetes_comediens')
+    .select('*')
+    .eq('saynete_id', sayneteId)
+  
+  if (error) throw error
+  return data as SaynetesComedien[]
+}
+
 export const fetchAccessoires = async (sayneteId: number) => {
-  const { data, error } = await supabase()
+  const { data, error } = await getSupabase()
     .from('accessoires')
     .select('*')
     .eq('saynete_id', sayneteId)
@@ -102,7 +111,7 @@ export const fetchAccessoires = async (sayneteId: number) => {
 }
 
 export const fetchCommentaires = async (sayneteId: number) => {
-  const { data, error } = await supabase()
+  const { data, error } = await getSupabase()
     .from('commentaires')
     .select('*')
     .eq('saynete_id', sayneteId)
@@ -118,7 +127,7 @@ export const addCommentaire = async (
   type: 'comedien' | 'mes',
   texte: string
 ) => {
-  const { data, error } = await supabase()
+  const { data, error } = await getSupabase()
     .from('commentaires')
     .insert([{ saynete_id: sayneteId, auteur, type, texte }])
     .select()
@@ -128,7 +137,7 @@ export const addCommentaire = async (
 }
 
 export const deleteCommentaire = async (commentaireId: number) => {
-  const { error } = await supabase()
+  const { error } = await getSupabase()
     .from('commentaires')
     .delete()
     .eq('id', commentaireId)
@@ -140,7 +149,7 @@ export const updateAccessoire = async (
   accessoireId: number,
   updates: Partial<Accessoire>
 ) => {
-  const { data, error } = await supabase()
+  const { data, error } = await getSupabase()
     .from('accessoires')
     .update(updates)
     .eq('id', accessoireId)
@@ -150,13 +159,22 @@ export const updateAccessoire = async (
   return data
 }
 
+export const fetchAllAccessoires = async () => {
+  const { data, error } = await getSupabase()
+    .from('accessoires')
+    .select('*')
+  
+  if (error) throw error
+  return data as Accessoire[]
+}
+
 export const addAccessoire = async (
   sayneteId: number,
   comedienId: number | null,
   objet: string,
   note: string | null
 ) => {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('accessoires')
     .insert([{ saynete_id: sayneteId, comedien_id: comedienId, objet, note }])
     .select()
@@ -166,7 +184,7 @@ export const addAccessoire = async (
 }
 
 export const deleteAccessoire = async (accessoireId: number) => {
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('accessoires')
     .delete()
     .eq('id', accessoireId)

@@ -1,7 +1,6 @@
 'use client'
 
-import { Saynete, Comedien } from '@/lib/supabase'
-import { supabase } from '@/lib/supabase'
+import { Saynete, Comedien, fetchSaynetesComediensBySaynete } from '@/lib/supabase'
 import { useEffect, useState } from 'react'
 
 interface SayneteMiniProps {
@@ -19,11 +18,8 @@ export default function SayneteMini({
 
   useEffect(() => {
     const loadComediens = async () => {
-      const { data } = await supabase()
-        .from('saynetes_comediens')
-        .select('*')
-        .eq('saynete_id', saynete.id)
-      setSaynetesComediens(data || [])
+      const data = await fetchSaynetesComediensBySaynete(saynete.id)
+      setSaynetesComediens(data)
     }
     loadComediens()
   }, [saynete.id])
