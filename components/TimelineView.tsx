@@ -204,7 +204,9 @@ export default function TimelineView({
                 <span className="text-xs text-slate-400 group-hover:text-slate-200 flex items-center gap-1">
                   ◀ <span className="font-semibold">PRÉCÉDENTE</span>
                 </span>
-                <span className="text-2xl">{prevSaynete.emoji || '🎭'}</span>
+                {prevSaynete.emoji?.startsWith('/')
+                  ? <img src={prevSaynete.emoji} alt="" className="h-8 w-auto object-contain" />
+                  : <span className="text-2xl">{prevSaynete.emoji || '🎭'}</span>}
                 <span className="text-xs font-bold text-slate-300 text-center leading-tight line-clamp-2">
                   <span className="text-slate-500">#{formatNumero(prevSaynete.numero, allNumeros)}</span>{' '}
                   {prevSaynete.titre}
@@ -225,7 +227,9 @@ export default function TimelineView({
                 <span className="text-xs font-bold tracking-widest uppercase" style={{ color: '#C06090' }}>
                   ▶ EN COURS
                 </span>
-                <span className="text-4xl">{currentSaynete.emoji || '🎭'}</span>
+                {currentSaynete.emoji?.startsWith('/')
+                  ? <img src={currentSaynete.emoji} alt="" className="h-12 w-auto object-contain" />
+                  : <span className="text-4xl">{currentSaynete.emoji || '🎭'}</span>}
                 <span className="text-sm font-extrabold text-white text-center leading-tight">
                   <span className="opacity-60">#{formatNumero(currentSaynete.numero, allNumeros)}</span>{' '}
                   {currentSaynete.titre}
@@ -242,7 +246,9 @@ export default function TimelineView({
                 <span className="text-xs text-slate-400 group-hover:text-slate-200 flex items-center gap-1 self-end">
                   <span className="font-semibold">SUIVANTE</span> ▶
                 </span>
-                <span className="text-2xl">{nextSaynete.emoji || '🎭'}</span>
+                {nextSaynete.emoji?.startsWith('/')
+                  ? <img src={nextSaynete.emoji} alt="" className="h-8 w-auto object-contain" />
+                  : <span className="text-2xl">{nextSaynete.emoji || '🎭'}</span>}
                 <span className="text-xs font-bold text-slate-300 text-center leading-tight line-clamp-2">
                   <span className="text-slate-500">#{formatNumero(nextSaynete.numero, allNumeros)}</span>{' '}
                   {nextSaynete.titre}

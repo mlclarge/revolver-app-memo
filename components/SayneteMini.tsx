@@ -40,7 +40,9 @@ export default function SayneteMini({
       <div className="mb-2">
         <p className="text-xs text-slate-400">#{saynete.numero}</p>
         <h3 className="font-bold text-sm line-clamp-2">
-          <span className="text-lg mr-1">{saynete.emoji || '🎭'}</span>
+          {saynete.emoji?.startsWith('/')
+            ? <img src={saynete.emoji} alt="" className="h-5 w-auto object-contain mr-1 inline-block align-middle" />
+            : <span className="text-lg mr-1">{saynete.emoji || '🎭'}</span>}
           {saynete.titre}
         </h3>
       </div>

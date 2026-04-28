@@ -110,7 +110,9 @@ export default function SaynetCard({
             #{formatNumero(saynete.numero, allNumeros)} / {total}
           </div>
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
-            <span className="text-4xl md:text-5xl mr-3">{saynete.emoji || '🎭'}</span>
+            {saynete.emoji?.startsWith('/')
+              ? <img src={saynete.emoji} alt="" className="h-12 md:h-14 w-auto object-contain mr-3 inline-block align-middle" />
+              : <span className="text-4xl md:text-5xl mr-3">{saynete.emoji || '🎭'}</span>}
             {saynete.titre}
           </h2>
           <p className="text-sm text-slate-400">Saynète #{formatNumero(saynete.numero, allNumeros)}</p>

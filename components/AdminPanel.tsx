@@ -313,7 +313,9 @@ function SayneteAdminCard({
         onClick={() => setOpen(o => !o)}
         className="w-full flex items-center gap-3 px-4 py-3 bg-slate-800/80 hover:bg-slate-700/80 transition-colors text-left"
       >
-        <span className="text-lg">{saynete.emoji || '🎭'}</span>
+        {saynete.emoji?.startsWith('/')
+          ? <img src={saynete.emoji} alt="" className="h-6 w-auto object-contain inline-block" />
+          : <span className="text-lg">{saynete.emoji || '🎭'}</span>}
         <span className="font-bold text-white flex-1">
           #{saynete.numero} — {saynete.titre}
         </span>
