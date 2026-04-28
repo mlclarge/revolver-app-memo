@@ -177,17 +177,52 @@ export default function TimelineView({
       </div>
 
       {/* Scènes filtrées list */}
-      {selectedComedien && (
-        <div className="bg-slate-900/80 border-b px-4 py-2" style={{ borderBottomColor: 'rgba(139, 58, 95, 0.3)' }}>
-          <p className="text-xs text-slate-400">
-            <span className="font-semibold" style={{ color: '#8B3A5F' }}>{selectedComedien}</span> joue dans{' '}
-            <span className="font-bold" style={{ color: '#A85090' }}>{filteredSaynetes.length}</span> scènes :{'  '}
-            <span className="text-slate-200 font-mono">
-              {filteredSaynetes.map(s => s.numero).join(', ')}
-            </span>
-          </p>
-        </div>
-      )}
+      {selectedComedien && (() => {
+        const comedienId = comediens.find(c => c.nom === selectedComedien)?.id
+        const actorScenes = filteredSaynetes.filter(s =>
+          saynetesComediens.some(sc => sc.saynete_id === s.id && sc.comedien_id === comedienId)
+        )
+        const accessoireScenes = filteredSaynetes.filter(s =>
+          accessoires.some(a => a.saynete_id === s.id && a.comedien_id === comedienId) &&
+          !saynetesComediens.some(sc => sc.saynete_id === s.id && sc.comedien_id === comedienId)
+        )
+        const accessoireAlsoActorScenes = filteredSaynetes.filter(s =>
+          accessoires.some(a => a.saynete_id === s.id && a.comedien_id === comedienId) &&
+          saynetesComediens.some(sc => sc.saynete_id === s.id && sc.comedien_id === comedienId)
+        )
+        return (
+          <div className="bg-slate-900/80 border-b px-4 py-2 space-y-1" style={{ borderBottomColor: 'rgba(139, 58, 95, 0.3)' }}>
+            {actorScenes.length > 0 && (
+              <p className="text-xs text-slate-400">
+                <span className="font-semibold" style={{ color: '#A85090' }}>{selectedComedien}</span>
+                {' '}joue dans{' '}
+                <span className="font-bold text-white">{actorScenes.length}</span> scène{actorScenes.length > 1 ? 's' : ''} :{' '}
+                <span className="text-slate-200 font-mono">
+                  {actorScenes.map(s => formatNumero(s.numero, allNumeros)).join(', ')}
+                </span>
+              </p>
+            )}
+            {accessoireAlsoActorScenes.length > 0 && (
+              <p className="text-xs text-slate-400">
+                ↳ dont Accessoires :{' '}
+                <span className="text-cyan-300 font-mono">
+                  {accessoireAlsoActorScenes.map(s => formatNumero(s.numero, allNumeros)).join(', ')}
+                </span>
+              </p>
+            )}
+            {accessoireScenes.length > 0 && (
+              <p className="text-xs text-slate-400">
+                <span className="font-semibold" style={{ color: '#A85090' }}>{selectedComedien}</span>
+                {' '}gère les Accessoires dans{' '}
+                <span className="font-bold text-white">{accessoireScenes.length}</span> scène{accessoireScenes.length > 1 ? 's' : ''} :{' '}
+                <span className="text-cyan-300 font-mono">
+                  {accessoireScenes.map(s => formatNumero(s.numero, allNumeros)).join(', ')}
+                </span>
+              </p>
+            )}
+          </div>
+        )
+      })()}
 
       {/* Content Area */}
       <div className="flex-1 overflow-y-auto">
