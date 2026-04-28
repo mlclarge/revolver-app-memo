@@ -194,3 +194,38 @@ export const deleteAccessoire = async (accessoireId: number) => {
   
   if (error) throw error
 }
+
+export const addSaynetesComedien = async (sayneteId: number, comedienId: number) => {
+  const { data, error } = await getSupabase()
+    .from('saynetes_comediens')
+    // @ts-ignore
+    .insert([{ saynete_id: sayneteId, comedien_id: comedienId }])
+    .select()
+  
+  if (error) throw error
+  return data
+}
+
+export const deleteSaynetesComedien = async (id: number) => {
+  const { error } = await getSupabase()
+    .from('saynetes_comediens')
+    .delete()
+    .eq('id', id)
+  
+  if (error) throw error
+}
+
+export const updateComedien = async (
+  comedienId: number,
+  updates: Partial<Pick<Comedien, 'nom' | 'couleur'>>
+) => {
+  const { data, error } = await getSupabase()
+    .from('comediens')
+    // @ts-ignore
+    .update(updates)
+    .eq('id', comedienId)
+    .select()
+  
+  if (error) throw error
+  return data
+}

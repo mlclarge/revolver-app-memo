@@ -93,10 +93,10 @@ export default function SaynetCard({
     .map(a => a.comedien_id)
     .filter((id, idx, arr) => id && arr.indexOf(id) === idx)
 
-  // Get cast comédiens (jouent) = Dans saynetes_comediens MAIS PAS dans les accessoires
-  const castComediens = comediens.filter(com => !mesComedienIds.includes(com?.id))
+  // Tous les comédiens du cast jouent (la prop comediens = saynetes_comediens)
+  const castComediens = comediens
 
-  // Get MES comédiens
+  // Get MES comédiens (peuvent aussi être acteurs)
   const mesComediens = mesComedienIds
     .map(id => allComediens.find(c => c.id === id))
     .filter(Boolean)
